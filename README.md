@@ -14,8 +14,8 @@ Node server.js
 ### Tech used 
 
 |**Front-end**:         Html,Css,Js,Bootstrap,Jquery  |<br />
-|**Back-end**           Nodejs,Express                |
-|**Api & Libraries:**   Socket.io,Pug,Body-parser     |
+|**Back-end**           Nodejs,Express                |<br />
+|**Api & Libraries:**   Socket.io,Pug,Body-parser     |<br />
 |**Database:**          Sql                           |
 
 ## links for the previous approach
