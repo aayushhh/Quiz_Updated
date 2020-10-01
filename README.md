@@ -11,7 +11,7 @@ real time quiz app is an webapp used to conducta realtime quiz with the students
 ```
 Node server.js
 ```
-## links for the previos approach
+## links for the previous approach
 
 
 * [RealTime Quiz](https://github.com/aayushhh/Real-time-quizApp)
