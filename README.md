@@ -13,7 +13,7 @@ Node server.js
 ```
 ### Tech used 
 
-|**Front-end**:         Html,Css,Js,Bootstrap,Jquery  |
+|**Front-end**:         Html,Css,Js,Bootstrap,Jquery  |<br />
 |**Back-end**           Nodejs,Express                |
 |**Api & Libraries:**   Socket.io,Pug,Body-parser     |
 |**Database:**          Sql                           |
