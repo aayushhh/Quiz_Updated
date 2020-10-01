@@ -16,7 +16,7 @@ Node server.js
 |**Front-end**:        | Html,Css,Js,Bootstrap,Jquery  |
 |**Back-end**          | Nodejs,Express                |
 |**Api & Libraries:**  | Socket.io,Pug,Body-parser     |
-|**Database:**         | Sql                          `|
+|**Database:**         | Sql                           |
 
 ## links for the previous approach
 
