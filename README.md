@@ -11,6 +11,13 @@ real time quiz app is an webapp used to conducta realtime quiz with the students
 ```
 Node server.js
 ```
+### Tech used 
+```
+Front end: Html,Css,Js,Bootstrap,Jquery
+Backend: Nodejs,Express
+Api & Libraries: Socket.io,Pug,Body-parser
+Database: Sql
+```
 ## links for the previous approach
 
 
