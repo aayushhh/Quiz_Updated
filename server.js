@@ -16,7 +16,7 @@ const server = http.createServer(app)
 const io = socketio(server)
 
 // we give a path for frontend
-app.use('/', express.static(path.join(__dirname, 'Quiz App Master')))
+app.use('/', express.static(path.join(__dirname, 'Frontend')))
 
 //sed server cuz it  the same thing 
 // app.listen(2345,() => console.log('Website hosted on port 2345'));
