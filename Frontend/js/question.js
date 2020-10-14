@@ -1,7 +1,7 @@
 'use strict';
 
 //grab the form 
-cont form = document.querySelector('/form');
+const form = document.querySelector('/form');
 
 
 //grab getInputValues
@@ -9,7 +9,6 @@ const Question = form.querySelector('#question');
 const Option1= form.querySelector('#option1');
 const Option2 = form.querySelector('#option2');
 const Option3 = form.querySelector('#option3');
-
 
 
 //config firebase

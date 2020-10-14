@@ -1,0 +1,63 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Quiz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet"> 
+     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
+    <link rel="stylesheet" href="/css/selectQuiz.css">
+    <link rel="stylesheet" href="/css/main.css">
+  
+</head>
+<body>
+    <div class="main">
+        <div class="nav-bar">
+            <div class="nav-item"><a href="index.html">Home</a></div>
+            <div class="nav-item"><a href="questions.html">Start Quiz</a></div>
+            <div class="nav-item"><a href="highscores.html">Results</a></div>
+        </div>
+        <div class="wrapper">
+            <div class="heading">Select quiz type</div>
+            <div class="form-wrapper">
+                <form id="quizForm">
+                    <div class="input-group">
+                        <label for="">No Of Questions</label>
+                        <input type="text" name="noQues" placeholder="max 50 questions">
+                    </div>
+                    <div class="input-group">
+                        <label for="">Category</label>
+                        <select name="category">
+                            <option value="0">Any</option>
+                            <option value="9">Primary School</option>
+                            <option value="10">Secondary School</option>
+                            <option value="11">Engineering</option>
+                            <option value="12">Post-Grad</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="">Difficulty</label>
+                        <select name="difficulty">
+                            <option value="0">Any</option>
+                            <option value="easy">Easy</option>
+                            <option value="medium">Medium</option>
+                            <option value="hard">Hard</option>
+                        </select>
+                    </div>
+                    <div class="input-group" id="info">
+                    </div>
+                    <div>
+                        <!-- <input type="submit" class="play-button" value="Let the fun begin"> -->
+
+                        <!-- <button class="button1" href="questions.html">Let the Quiz Start</button> -->
+
+                        <a class="button1" href="questions.html">Let the Quiz Continue</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="/js/createQuiz.js"></script>
+</body>
+</html>

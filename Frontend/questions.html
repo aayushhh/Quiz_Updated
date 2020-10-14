@@ -3,6 +3,56 @@
 <head>
 <!-- for importing socket.io to the server -->
     <script src="http://localhost:4000/socket.io/socket.io.js"></script>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-app.js"></script>
+
+            <!-- TODO: Add SDKs for Firebase products that you want to use
+            https://firebase.google.com/docs/web/setup#available-libraries -->
+            <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-database.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyDMBZYjn_l76_pX6yirUKaHDnl0W2rYmdU",
+    authDomain: "quiz-c9d74.firebaseapp.com",
+    databaseURL: "https://quiz-c9d74.firebaseio.com",
+    projectId: "quiz-c9d74",
+    storageBucket: "quiz-c9d74.appspot.com",
+    messagingSenderId: "748253623699",
+    appId: "1:748253623699:web:091c71847b23e81dfbe466",
+    measurementId: "G-GVQ3EEDV5T"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  var userDataRef = firebase.database().ref('session');
+  userDataRef.remove()
+    alert("session data is cleared and ready to save new questions")
+  
+  function func(){
+               var que;
+               var opt1;
+               var opt2;
+               var opt3;
+               var ans;
+               que = document.getElementById('question').value;
+               opt1 = document.getElementById('option1').value;
+               opt2 = document.getElementById('option2').value;
+               opt3 = document.getElementById('option3').value;
+               ans = document.getElementById('correct_option').value;
+
+                userDataRef.push({
+                    question: que,
+                    option1 :opt1,
+                    option2 :opt2,
+                    option3 :opt3,
+                    Correct_option:ans
+
+                });
+
+                alert("Question stored");
+            }
+</script>
 
 <script>
     const form =document.querySelector('#form')
@@ -14,20 +64,28 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 <!-- Linking the css file -->
     <link rel="stylesheet" href="css/question.css">
+    <link rel="stylesheet" href="css/livechat.css">
 
 
     <title>Questions</title>
 </head>
 <body>
-    <style>
 
+    <style>
+/* 
     body {background-image: url('Question-Mark.png');
         background-repeat: repeat;
       background-attachment: fixed; 
   background-size: 60% 90%;
-}
+} */
  </style>
 <!-- form for the Questions -->
+<div class="main">
+    <div class="nav-bar">
+        <div class="nav-item"><a href="index.html">Home</a></div>
+        <div class="nav-item"><a href="end.html">End Quiz</a></div>
+        <div class="nav-item"><a href="highscores.html">Results</a></div>
+    </div>
     <div class="centerForm">
 	
         <form id="form" autocomplete="on">
@@ -69,17 +127,102 @@
             </div>
             <img src='https://media.giphy.com/media/Up7Jqi6HeCzHKfBPYJ/giphy.gif' height="8%" width="9%">
 			 
-			  <input type="button" id="next" alignclass="button" onclick="addQuestion()" class="button1"value="Next" /> 
-           <input type="button" id="submit" onclick="displaydata()" class="button" value="Submit"/>
+			  <button type="button" id="next" alignclass="button" onclick="func()" class="btn btn-warning" value="Next" /><b>Next</b></button>
            
             <img src='https://media.giphy.com/media/7JQTn2oiXKfQJ6lAJI/giphy.gif' height="6%" width="6%">
         </form>
 		 
     </div>
+    <button class="open-button" onclick="openForm()">Chat</button>
+
+    <div class="chat-popup" id="myForm">
+      <form class="form-container">
+        <h1>Chat</h1>
+    
+        <label for="msg"><b>Message</b></label>
+        <textarea placeholder="Type message.." name="msg" required></textarea>
+    
+        <button type="submit" class="btn">Send</button>
+        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+      </form>
+    
+    </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="question.js">
+    <script src="/js/question.js"></script>
+    <script src="/js/livechat.js"></script>
+   <!--  <script>
+        'use strict';
+
+//grab the form 
+cont form = document.querySelector('/form');
+
+
+//grab getInputValues
+const Question = form.querySelector('#question');
+const Option1= form.querySelector('#option1');
+const Option2 = form.querySelector('#option2');
+const Option3 = form.querySelector('#option3');
+
+
+
+//config firebase
+var firebaseConfig = {
+    apiKey: "AIzaSyDm7tHgFrpyfMRaRnaYgtC3dwa0jvkSZf8",
+    authDomain: "questions-7120a.firebaseapp.com",
+    databaseURL: "https://questions-7120a.firebaseio.com",
+    projectId: "questions-7120a",
+    storageBucket: "questions-7120a.appspot.com",
+    messagingSenderId: "436649221104",
+    appId: "1:436649221104:web:1ec4350e205a211c8c9b35",
+    measurementId: "G-M0DP3V20LE"
+  };
+  firebase.initializeApp(firebaseConfig);
+
+    $('#form').submit(function(e) {
+        e.preventDefault();
+     
+        var newMessageRef = messagesRef.push();
+        newMessageRef.set({
+            Question: $('.question').val(),
+            Option1: $('.option1').val(),
+            Option2: $('.option2').val(),
+            Opition3: $('.option3').val()
+        });
+     
+        $('.success-message').show();
+     
+        $('#form')[0].reset();
+    });
+    </script> -->
         
     </script> 
+    <script>
+        var socket = io();
+     </script>
+     <script>
+        var socket = io();
+        
+        socket.on('userSet', function(data) {
+          
+           document.body.innerHTML = '<input type = "text" id = "message">\
+           <button type = "button" name = "button" onclick = "send()">Send</button>\
+           <div id = "message-container"></div>';
+        });
+        function send() {
+           var msg = document.getElementById('message').value;
+           if(msg) {
+              socket.emit('msg', {message: msg, user: user});
+           }
+        }
+        socket.on('newmsg', function(data) {
+           if(user) {
+              document.getElementById('message-container').innerHTML += '<div><b>' + 
+                 data.user + '</b>: ' + data.message + '</div>'
+           }
+        })
+     </script>
+     
+    <script src="/socket.io/socket.io.js"></script>
 </body>
 </html>
 

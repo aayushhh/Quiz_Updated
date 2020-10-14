@@ -3,8 +3,94 @@
 <head>
 <!-- for importing socket.io to the server -->
     <script src="http://localhost:4000/socket.io/socket.io.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+            <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-app.js"></script>
 
-<script>
+            <!-- TODO: Add SDKs for Firebase products that you want to use
+            https://firebase.google.com/docs/web/setup#available-libraries -->
+            <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-database.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+            <script>
+                var arr=[];
+                var quesno=0;
+                var marks=0;
+                var cans;
+                
+                function loadques(){
+                   
+            // Your web app's Firebase configuration
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+                    var firebaseConfig = {
+    apiKey: "AIzaSyDMBZYjn_l76_pX6yirUKaHDnl0W2rYmdU",
+    authDomain: "quiz-c9d74.firebaseapp.com",
+    databaseURL: "https://quiz-c9d74.firebaseio.com",
+    projectId: "quiz-c9d74",
+    storageBucket: "quiz-c9d74.appspot.com",
+    messagingSenderId: "748253623699",
+    appId: "1:748253623699:web:091c71847b23e81dfbe466",
+    measurementId: "G-GVQ3EEDV5T"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+            
+                var userDataRef = firebase.database().ref('session');
+                userDataRef.on('value', function(snapshot) {
+                    setTimeout(()=>{
+                           showques(); 
+                    }, 500 )
+                    snapshot.forEach(function(childSnapshot) {
+                      var childData = childSnapshot.val();
+                      console.log (childData) 
+                      arr.push(childData) 
+                      console.log (arr)
+                      
+                       
+               // var que= childSnapshot.val().question;
+               // var opt1= childSnapshot.val().option1;
+               // //console.log (opt1)
+               // var opt2= childSnapshot.val().option2;
+               // //console.log(opt2)
+               // var opt3= childSnapshot.val().option3;
+
+              
+});
+        });}
+                function showques(){
+                    document.getElementById("marks").innerHTML =marks;
+                    if(arr.length <= quesno){
+                        alert("Question completed !!");
+                        return;
+                    }
+                    else{
+                        $("#question").empty();
+                        $(".opt1").empty();
+                        $(".opt2").empty();
+                        $(".opt3").empty();
+
+                        cans=arr[quesno].Correct_option
+                        $("#question").append(arr[quesno].question);
+                        $(".opt1").append(arr[quesno].option1);
+                        $(".opt2").append(arr[quesno].option2);
+                        $(".opt3").append(arr[quesno].option3);
+
+
+
+                        quesno=quesno+1;}
+
+
+                    }
+                    function selected(){
+                        var y= document.getElementById("mySelect").value;
+                    if(cans==y){
+                        marks=marks+10;
+                        // alert(marks)
+                    }
+                    showques()
+                    }
+
+                
     const form =document.querySelector('#form')
 </script>
     <meta charset="UTF-8">
@@ -14,50 +100,128 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 <!-- Linking the css file -->
     <link rel="stylesheet" href="css/question.css">
+    <link rel="stylesheet" href="css/livechat.css">
 
 
     <title>Questions</title>
 </head>
-<body>
-    <style>
+<style>/* Button used to open the chat form - fixed at the bottom of the page */
+    .open-button {
+        background-color: #555;
+        color: white;
+        padding: 16px 20px;
+        border: none;
+        cursor: pointer;
+        opacity: 0.8;
+        position: fixed;
+        bottom: 23px;
+        right: 28px;
+        width: 280px;
+      }
+      
+      /* The popup chat - hidden by default */
+      .chat-popup {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        right: 15px;
+        border: 3px solid #f1f1f1;
+        z-index: 9;
+      }
+      
+      /* Add styles to the form container */
+      .form-container {
+        max-width: 300px;
+        padding: 10px;
+        background-color: white;
+      }
+      
+      /* Full-width textarea */
+      .form-container textarea {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        border: none;
+        background: #f1f1f1;
+        resize: none;
+        min-height: 200px;
+      }
+      
+      /* When the textarea gets focus, do something */
+      .form-container textarea:focus {
+        background-color: #ddd;
+        outline: none;
+      }
+      
+      /* Set a style for the submit/send button */
+      .form-container .btn {
+        background-color: #4CAF50;
+        color: white;
+        padding: 16px 20px;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        margin-bottom:10px;
+        opacity: 0.8;
+      }
+      
+      /* Add a red background color to the cancel button */
+      .form-container .cancel {
+        background-color: red;
+      }
+      
+      /* Add some hover effects to buttons */
+      .form-container .btn:hover, .open-button:hover {
+        opacity: 1;
+      }</style>
+<body onload="loadques()">
+    <!-- <style>
 
     body {background-image: url('Question-Mark.png');
         background-repeat: repeat;
       background-attachment: fixed; 
   background-size: 60% 90%;
 }
- </style>
+ </style> -->
 <!-- form for the Questions -->
+
+<div class="main">
+    <div class="nav-bar">
+        <div class="nav-item"><a href="index.html">Home</a></div>
+        <div class="nav-item"><a href="end.html">End Quiz</a></div>
+        <div class="nav-item"><a href="highscores.html">Results</a></div>
+    </div>
     <div class="centerForm">
-	
-        <form id="form" autocomplete="on">
-            <h1>Questions</h1>
+	<center>
+        <form id="form">
+            <h1>Questions</h1> Marks:<label id="marks"></label>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend"></div>
                     <div id="question"></div>                        <!-- <input required type="text" id="question" name="question" class="form-control" placeholder="Enter Question" size="50" required> -->
 
                 </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" >A<i class="0pt1"></i></span>&nbsp;
-                        <div id="option1"></div> 
-                        <!-- <input required  type="text" id="option1" name="option1" class="form-control" placeholder="Enter option"> -->
-                    </div>
+                <select id="mySelect">
+                    <option class="opt1"value="A"></option>
+                    <option class="opt2" value="B"></option>
+                    <option class="opt3" value="C"></option>
+                   
+                  </select><br><br>
+                <!-- <div class="input-group mb-3">
+                        <input type ="checkbox"/><label class="opt1"></label>
+                       
+                        
                 </div>
             <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" >B<i class="opt2"></i></span>&nbsp;
-                        <div id="option2"></div> 
-                        <!-- <input required  type="text" id="option2" name="option2" class="form-control" placeholder="Enter option"> -->
-                    </div>
+                        <input type ="checkbox"/><i class="opt2"></i>
+                        
             </div>
             <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" ><i class="opt3"></i>C</span>&nbsp;
-                        <div id="option3"></div> 
-                        <!-- <input required  type="text" id="option3" name="option3" class="form-control" placeholder="Enter option"> -->
-                    </div>
-            </div>
+                    
+                        <input type ="checkbox" class="btn btn-info"/><i class="opt3"></i>
+                        
+                        
+                    
+            </div> -->
             <!-- <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <label for="Answers" class="answer">Choose answer:</label>&nbsp;
@@ -72,17 +236,61 @@
             </div> -->
             <img src='https://media.giphy.com/media/Up7Jqi6HeCzHKfBPYJ/giphy.gif' height="8%" width="9%">
 			 
-			  <input type="button" id="next" alignclass="button" onclick="nextPage()" class="button1"value="Next" /> 
+			  <input type="reset" id="next" onclick="selected()" class="button1" value="Next">
            <!-- <input type="button" id="submit" onclick="displaydata()" class="button" value="Submit"/> -->
            
             <img src='https://media.giphy.com/media/7JQTn2oiXKfQJ6lAJI/giphy.gif' height="6%" width="6%">
+            
         </form>
-		 
+		 </center>
     </div>
+    
+    <button class="open-button" onclick="openForm()">Chat</button>
+
+<div class="chat-popup" id="chat">
+  <form  class="form-container" id="chat-msg">
+    <h1>Chat</h1>
+
+    <label for="msg"><b>Message</b></label>
+    <textarea placeholder="Type message.." name="msg" required></textarea>
+
+    <button type="submit" class="btn" id="send-chat">Send</button>
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+  </form>
+
+</div>
+     
+</script> 
+
+ <script>
+    var socket = io();
+    
+    socket.emit('userSet', function(data) {
+      
+       document.body.innerHTML = '<input type = "text" id = "message">\
+       <button type = "button" name = "button" onclick = "send()">Send</button>\
+       <div id = "message-container"></div>';
+    });
+    function send() {
+       var msg = document.getElementById('message').value;
+       if(msg) {
+          socket.emit('msg', {message: msg, user: user});
+       }
+    }
+    socket.on('newmsg', function(data) {
+       if(user) {
+          document.getElementById('message-container').innerHTML += '<div><b>' + 
+             data.user + '</b>: ' + data.message + '</div>'
+       }
+    })
+ </script>
+ 
+<script src="https://localhost:4000/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="student.js">
+    <script src="student.js"></script>
+        <script src="js/livechat.js"></script>
         
-    </script> 
+    
 </body>
 </html>
 

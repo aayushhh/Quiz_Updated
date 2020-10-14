@@ -1,0 +1,81 @@
+body{
+    margin : 0px;
+    padding: 0px;
+    font-family: 'Architects Daughter', cursive;
+    font-size: 20px;
+}
+.main{
+    min-height: 100vh;
+    background: url('../images/bg1.jpg');
+    background-size: cover;
+    background-repeat: repeat-y;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+}
+.main > div{
+    text-align: center;
+}
+.heading{
+    font-size: 100px;
+    font-weight: 900;
+    color: black;
+    font-family: 'Caveat', cursive;
+}
+.wrapper{
+    background-color:#ffffffbb;
+    width: max-content;
+    margin: 20px auto;
+    padding: 40px;
+    border-radius: 20px;
+}
+.play-button{
+    background-color: rgb(247, 0, 255);
+    padding: 10px 20px;
+    color: white;
+    border-radius: 20px;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: 'Architects Daughter', cursive;
+    margin: 10px;
+}
+.play-button{
+    display: block;
+    background-color: #047699aa;
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 40px;
+    font-weight: bold;
+    margin: 10px;
+}
+.button1 {
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #af984c;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+  }
+.nav-bar{
+    display: flex;
+    background-color: #047699aa;
+    justify-content: center;
+}
+.nav-bar > div{
+    margin:10px 20px;
+}
+.nav-bar a{
+    color: white;
+    font-weight: 900;
+    text-decoration:none;
+    font-size: 25px;
+}

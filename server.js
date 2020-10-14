@@ -34,5 +34,6 @@ io.on('connection',(socket)=>{
         socket.broadcast.emit('msg',questionArray);     
     });        
 })
-//server on the localhost
+
+
 server.listen(4000,()=> console.log('Website hosted on port 4000'));

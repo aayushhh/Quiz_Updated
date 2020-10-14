@@ -1,7 +1,7 @@
 body{
     background-size: cover;
     background-blend-mode: overlay;
-    background-color: #9e8f8f;
+    background-color: #ffffff;
     
     color: #ffffff;
     height: 100vh;
@@ -13,7 +13,7 @@ body{
     text-align: center;
     color: white;
     padding: 40px;
-    background-color: #b99292ed;
+    background-color: #52bedfce;
 }
 #form h1{
     margin-bottom:40px;
@@ -35,7 +35,7 @@ input[type=text] {
   input[type=text]:focus {
     width: 100%;
   }
-  button1 {
+  .button1 {
     display: inline-block;
     padding: 15px 25px;
     font-size: 24px;
@@ -44,12 +44,12 @@ input[type=text] {
     text-decoration: none;
     outline: none;
     color: #fff;
-    background-color: #af984c;
+    background-color: #047699aa;
     border: none;
     border-radius: 15px;
     box-shadow: 0 9px #999;
   }
-  button {
+  /*button {
     display: inline-block;
     padding: 15px 25px;
     font-size: 24px;
@@ -62,19 +62,19 @@ input[type=text] {
     border: none;
     border-radius: 15px;
     box-shadow: 0 9px #999;
-  }
+  }*/
   
-  .button:hover {background-color: #3e8e41}
+  .button1:hover {background-color: #3a9b3d}
   
   .button:active {
     background-color: #3e8e41;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
   }
-  .button1:hover {background-color: #dbc129}
+
   
   .button1:active {
-    background-color: #b8b641;
+    background-color: #269e30d5;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
   }
@@ -84,4 +84,26 @@ input[type=text] {
     left: 50%;
     transform: translate(-50%,-50%);
     width:50%
+}
+.nav-bar{
+  display: flex;
+  background-color: #047699aa;
+  justify-content: center;
+}
+.nav-bar > div{
+  margin:10px 20px;
+}
+.nav-bar a{
+  color: white;
+  font-weight: 900;
+  text-decoration:none;
+  font-size: 25px;
+}
+.right {
+  position: absolute;
+  right: 0px;
+  width: 100x;
+  height: 200px;
+  border: 3px solid #e9ece4;
+  padding: 10px;
 }
